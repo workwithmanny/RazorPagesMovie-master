@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "8U+JIC2vD6I=",
+  "dgSpecHash": "OwCANlq5Nbs=",
   "success": true,
   "projectFilePath": "/home/kholly/Documents/Ass/RazorPagesMovie-master/RazorPagesMovie.csproj",
   "expectedPackageFiles": [
     "/home/kholly/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/home/kholly/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
+    "/home/kholly/.nuget/packages/bogus/35.6.3/bogus.35.6.3.nupkg.sha512",
     "/home/kholly/.nuget/packages/humanizer/2.14.1/humanizer.2.14.1.nupkg.sha512",
     "/home/kholly/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/kholly/.nuget/packages/humanizer.core.af/2.14.1/humanizer.core.af.2.14.1.nupkg.sha512",

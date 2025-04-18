@@ -18,4 +18,6 @@ public class Cast
     
     public int MovieId { get; set; }
     public Movie? Movie { get; set; }
+    [DataType(DataType.Date)]
+    public DateTime DateOfBirth { get; set; }
 }

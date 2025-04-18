@@ -26,6 +26,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/kholly/Documents/Ass/RazorPagesMovie-master
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/kholly/Documents/Ass/RazorPagesMovie-master/Pages/Actors/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWN0b3JzL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/kholly/Documents/Ass/RazorPagesMovie-master/Pages/Actors/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWN0b3JzL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/kholly/Documents/Ass/RazorPagesMovie-master/Pages/Actors/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWN0b3JzL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/kholly/Documents/Ass/RazorPagesMovie-master/Pages/Actors/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWN0b3JzL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/kholly/Documents/Ass/RazorPagesMovie-master/Pages/Actors/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWN0b3JzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/kholly/Documents/Ass/RazorPagesMovie-master/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

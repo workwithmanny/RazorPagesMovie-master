@@ -603,3 +603,4 @@
 /home/kholly/Documents/Ass/RazorPagesMovie-master/obj/Debug/net8.0/RazorPagesMovie.pdb
 /home/kholly/Documents/Ass/RazorPagesMovie-master/obj/Debug/net8.0/RazorPagesMovie.genruntimeconfig.cache
 /home/kholly/Documents/Ass/RazorPagesMovie-master/obj/Debug/net8.0/ref/RazorPagesMovie.dll
+/home/kholly/Documents/Ass/RazorPagesMovie-master/bin/Debug/net8.0/Bogus.dll

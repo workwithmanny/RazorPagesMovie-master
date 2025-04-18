@@ -13,15 +13,20 @@ namespace RazorPagesMovie.Pages.Movies
 {
     public class EditModel : PageModel
     {
-        private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
+        private readonly RazorPagesMovieContext _context;
 
-        public EditModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
+        public EditModel(RazorPagesMovieContext context)
         {
             _context = context;
         }
 
         [BindProperty]
         public Movie Movie { get; set; } = default!;
+
+        [BindProperty]
+        public int[] SelectedActors { get; set; } = Array.Empty<int>();
+
+        public SelectList ActorOptions { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,25 +35,75 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            var movie =  await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
+            var movie = await _context.Movie
+                .Include(m => m.MovieActors)
+                .ThenInclude(ma => ma.Actor)
+                .FirstOrDefaultAsync(m => m.Id == id);
+                
             if (movie == null)
             {
                 return NotFound();
             }
+            
             Movie = movie;
+            
+            // Get currently selected actors
+            SelectedActors = Movie.MovieActors.Select(ma => ma.ActorId).ToArray();
+            
+            PopulateActorsDropDown();
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
+        private void PopulateActorsDropDown()
+        {
+            var actors = _context.Actor.OrderBy(a => a.Name).ToList();
+            ActorOptions = new SelectList(actors, "Id", "Name");
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                PopulateActorsDropDown();
                 return Page();
             }
 
-            _context.Attach(Movie).State = EntityState.Modified;
+            // Get the existing movie with its relationships
+            var movieToUpdate = await _context.Movie
+                .Include(m => m.MovieActors)
+                .FirstOrDefaultAsync(m => m.Id == Movie.Id);
+
+            if (movieToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            // Update basic movie properties
+            _context.Entry(movieToUpdate).CurrentValues.SetValues(Movie);
+            
+            // Handle actor relationships
+            
+            // Remove actors that are no longer selected
+            foreach (var existingActor in movieToUpdate.MovieActors.ToList())
+            {
+                if (!SelectedActors.Contains(existingActor.ActorId))
+                {
+                    _context.MovieActor.Remove(existingActor);
+                }
+            }
+            
+            // Add newly selected actors
+            foreach (var actorId in SelectedActors)
+            {
+                if (!movieToUpdate.MovieActors.Any(ma => ma.ActorId == actorId))
+                {
+                    movieToUpdate.MovieActors.Add(new MovieActor
+                    {
+                        MovieId = movieToUpdate.Id,
+                        ActorId = actorId
+                    });
+                }
+            }
 
             try
             {

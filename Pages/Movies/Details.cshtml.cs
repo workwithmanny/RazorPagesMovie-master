@@ -12,9 +12,9 @@ namespace RazorPagesMovie.Pages.Movies
 {
     public class DetailsModel : PageModel
     {
-        private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
+        private readonly RazorPagesMovieContext _context;
 
-        public DetailsModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
+        public DetailsModel(RazorPagesMovieContext context)
         {
             _context = context;
         }
@@ -28,12 +28,15 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
+            var movie = await _context.Movie
+                .Include(m => m.Cast)
+                .Include(m => m.MovieActors)
+                .ThenInclude(ma => ma.Actor)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (movie is not null)
             {
                 Movie = movie;
-
                 return Page();
             }
 
